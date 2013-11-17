@@ -7,5 +7,6 @@
 		"recipe[aws]",
 		"recipe[mysql]",
 		"recipe[nodejs]",
+		"recipe[apache2]",
 		"recipe[chef_handler]" ]
 }

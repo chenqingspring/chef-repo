@@ -6,5 +6,6 @@
 		"recipe[yum]", 
 		"recipe[aws]",
 		"recipe[mysql]",
+		"recipe[nodejs]",
 		"recipe[chef_handler]" ]
 }

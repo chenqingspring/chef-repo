@@ -12,6 +12,8 @@ if [ -f "$rvm_sh" ]; then
 	source $rvm_sh
 fi
 
+rvm reload
+
 gem source add http://ruby.taobao.org/
 
 sudo gem install chef --verbose --no-rdoc

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+SLEEP_TIME=30
+ORIGINAL_GIT=/usr/bin/git
+
+if [[ $# -eq 0 ]] ; then
+  $ORIGINAL_GIT
+  exit 1
+fi
+
+for count in 1 2 3 4 5 ; do
+  $ORIGINAL_GIT "$@"
+  exit_status=$?
+  if [[ $exit_status -eq 0 ]] ; then
+    break
+  else
+    echo "git: failed with exit status $exit_status ($count of 5); retrying in $SLEEP_TIME seconds..."
+    sleep $SLEEP_TIME
+  fi
+done
+
+exit $exit_status

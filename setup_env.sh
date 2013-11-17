@@ -4,9 +4,9 @@ source ~/.bash_profile
 
 gem source add http://ruby.taobao.org/
 
-gem install chef --verbose
+sudo gem install chef --verbose --no-rdoc
 
 cd ../ && ln -s chef-repo /etc/chef && cd /etc/chef
 
-chef-solo solo.rb
+sudo chef-solo solo.rb
 

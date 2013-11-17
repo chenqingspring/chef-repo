@@ -12,5 +12,5 @@ cp -R ../chef-repo /tmp/
 
 sudo ln -s /tmp/chef-repo /etc/chef && cd /etc/chef
 
-sudo chef-solo solo.rb
+chef-solo solo.rb
 

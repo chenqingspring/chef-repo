@@ -26,7 +26,7 @@ when 'package'
   include_recipe 'nginx::package'
 end
 
-service 'nginx' do
-  supports :status => true, :restart => true, :reload => true
-  action   :start
-end
+# service 'nginx' do
+#   supports :status => true, :restart => true, :reload => true
+#   action   :start
+# end

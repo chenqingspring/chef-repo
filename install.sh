@@ -1,6 +1,16 @@
 \curl -L https://get.rvm.io | bash -s stable
 
-source ~/.bash_profile
+file = ~/.bash_profile
+
+if [ -f "$file" ]
+	source $file
+fi
+
+rvm_sh = /etc/profile.d/rvm.sh
+
+if [ -f "$rvm_sh"]
+	source $rvm_sh
+fi
 
 gem source add http://ruby.taobao.org/
 

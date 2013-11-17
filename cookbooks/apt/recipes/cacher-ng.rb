@@ -1,8 +1,6 @@
 #
-# Cookbook Name:: nginx
-# Recipe:: default
-#
-# Author:: AJ Christensen <aj@junglist.gen.nz>
+# Cookbook Name:: apt
+# Recipe:: cacher-ng
 #
 # Copyright 2008-2013, Opscode, Inc.
 #
@@ -19,14 +17,27 @@
 # limitations under the License.
 #
 
-case node['nginx']['install_method']
-when 'source'
-  include_recipe 'nginx::source'
-when 'package'
-  include_recipe 'nginx::package'
+node.set['apt']['caching_server'] = true
+
+package "apt-cacher-ng" do
+  action :install
 end
 
-service 'nginx' do
-  supports :status => true, :restart => true, :reload => true
-  action   :start
+directory node['apt']['cacher_dir'] do
+  owner "apt-cacher-ng"
+  group "apt-cacher-ng"
+  mode 0755
+end
+
+template "/etc/apt-cacher-ng/acng.conf" do
+  source "acng.conf.erb"
+  owner "root"
+  group "root"
+  mode 00644
+  notifies :restart, "service[apt-cacher-ng]", :immediately
+end
+
+service "apt-cacher-ng" do
+  supports :restart => true, :status => false
+  action [:enable, :start]
 end

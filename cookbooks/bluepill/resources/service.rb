@@ -1,10 +1,8 @@
 #
-# Cookbook Name:: nginx
-# Recipe:: default
+# Cookbook Name:: bluepill
+# Resource:: service
 #
-# Author:: AJ Christensen <aj@junglist.gen.nz>
-#
-# Copyright 2008-2013, Opscode, Inc.
+# Copyright 2010, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,14 +17,11 @@
 # limitations under the License.
 #
 
-case node['nginx']['install_method']
-when 'source'
-  include_recipe 'nginx::source'
-when 'package'
-  include_recipe 'nginx::package'
-end
+actions :start, :stop, :enable, :disable, :load, :restart, :reload
+default_action :start
 
-service 'nginx' do
-  supports :status => true, :restart => true, :reload => true
-  action   :start
-end
+attribute :service_name, :name_attribute => true
+attribute :enabled, :default => false
+attribute :running, :default => false
+attribute :variables, :kind_of => Hash
+attribute :supports, :default => { :restart => true, :status => true }

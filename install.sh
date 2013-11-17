@@ -1,14 +1,14 @@
 \curl -L https://get.rvm.io | bash -s stable
 
-file = ~/.bash_profile
+file=~/.bash_profile
 
-if [ -f "$file" ]
+if [ -f "$file" ]; then
 	source $file
 fi
 
-rvm_sh = /etc/profile.d/rvm.sh
+rvm_sh=/etc/profile.d/rvm.sh
 
-if [ -f "$rvm_sh"]
+if [ -f "$rvm_sh" ]; then
 	source $rvm_sh
 fi
 

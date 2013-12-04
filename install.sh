@@ -28,10 +28,10 @@ if [ ! -x /usr/bin/chef-solo ]; then
     attempts=$[$attempts+1]
   done
   set -e
+fi
 
 sudo rm -rf /tmp/chef-repo /etc/chef
 
 cp -R ../chef-repo /tmp/
 sudo ln -s /tmp/chef-repo /etc/chef && cd /etc/chef
 chef-solo solo.rb
-
